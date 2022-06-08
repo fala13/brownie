@@ -546,7 +546,7 @@ class TransactionReceipt:
     def _set_from_tx(self, tx: Dict) -> None:
         if not self.sender:
             self.sender = EthAddress(tx["from"])
-        self.receiver = EthAddress(tx["to"]) if tx["to"] else None
+        self.receiver = EthAddress(tx["to"]) if "to" in tx and tx["to"] else None
         self.value = Wei(tx["value"])
         self.gas_price = tx.get("gasPrice")
         self.max_fee = tx.get("maxFeePerGas")
